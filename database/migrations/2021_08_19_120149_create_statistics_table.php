@@ -17,6 +17,7 @@ class CreateStatisticsTable extends Migration
             $table->increments('id');
             $table->string('month');
             $table->float('price');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

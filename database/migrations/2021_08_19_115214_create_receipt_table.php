@@ -18,6 +18,7 @@ class CreateReceiptTable extends Migration
             $table->string('name');
             $table->string('products');
             $table->float('price');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

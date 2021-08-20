@@ -3,19 +3,21 @@
 namespace App\Http\Controllers;
 use App\Models\Receipt;
 use App\Models\Statistics;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
 {
-    protected $maxFields,$sumPrice,$name,$product;
+    protected $maxFields,$sumPrice,$name,$product,$user_id;
 
     protected array $products=[
 
         [
-            "id"=>NULL,
+            "name"=>NULL,
             "product"=>NULL,
-            "price"=>NULL
+            "price"=>NULL,
+            "user_id"=>NULL
 
         ]
 
@@ -28,17 +30,60 @@ class ApplicationController extends Controller
         return $receipt;
 
     }
+    public function AddReceiptForms()
+    {
+        $res=0;
+
+        return view('AddReceipt',compact('res'));
+
+    }
     public function AddReceipt(Request $request)
     {
-        $this->maxFields=$request->input('number');
+        $this->maxFields=$request->input('i');
 
         for($i=0;$i<$this->maxFields;$i++)
         {
-            $this->products[$i]["name"]=$request->input('name'+$i);
-            $this->products[$i]["product"]=$request->input('product'+$i);
-            $this->products[$i]["price"]=$request->input('price'+$i);
+            $this->products[$this->maxFields]["name"]=$this->name;
+            $this->products[$this->maxFields]["product"]=$request->input('product'+$this->maxFields);
+            $this->products[$this->maxFields]["price"]=$request->input('price')+$this->maxFields;
 
         }
+
+        $i=0;
+
+        foreach($this->products as $p)
+        {
+            $this->sumPrice+=$this->products[$i]["price"];
+
+            $i++;
+
+        }
+
+        $this->user_id=Auth::id();
+
+        if($request->has('confirm'))
+        {
+            $receipts=Receipt::create([
+
+                    "name"=>$this->name,
+                    "products"=>$this->product,
+                    "price"=>$this->sumPrice,
+                    "user_id"=>$this->user_id
+
+            ]);
+
+        }
+
+        $res=1;
+        $i=$this->maxFields+1;
+
+        //return view('AddReceipt',compact('res','i'));
+
+        return var_dump($this->products);
+    }
+    public function saveReceipt()
+    {
+        $this->user_id=Auth::id();
 
         $i=0;
 
@@ -56,13 +101,23 @@ class ApplicationController extends Controller
 
                     "name"=>$this->name,
                     "products"=>$this->product,
-                    "price"=>$this->sumPrice
+                    "price"=>$this->sumPrice,
+                    "user_id"=>$this->user_id
 
             ]);
 
         }
 
-        return view('index');
+    }
+    public function getReceiptForm(Request $request)
+    {
+        $res=1;
+        $i=0;
+
+        $this->name=$request->input('name');
+        $value=$request->input('value');
+
+        return view('AddReceipt',compact('res','i','value'));
 
     }
 

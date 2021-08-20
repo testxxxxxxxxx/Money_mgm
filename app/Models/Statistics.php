@@ -15,7 +15,8 @@ class Statistics extends Model
 
         "id",
         "month",
-        "price"
+        "price",
+        "user_id"
 
     ];
 
