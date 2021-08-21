@@ -16,6 +16,7 @@ class Receipt extends Model
         'id',
         'name',
         'products',
+        'month',
         'price',
         'user_id'
 

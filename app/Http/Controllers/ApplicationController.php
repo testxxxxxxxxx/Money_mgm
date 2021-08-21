@@ -9,13 +9,14 @@ use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
 {
-    protected $maxFields,$sumPrice,$name,$product,$user_id;
+    protected $maxFields,$sumPrice,$name,$product,$user_id,$month;
 
     protected array $products=[
 
         [
             "name"=>NULL,
             "product"=>NULL,
+            "month"=>NULL,
             "price"=>NULL,
             "user_id"=>NULL
 
@@ -40,20 +41,24 @@ class ApplicationController extends Controller
     public function AddReceipt(Request $request)
     {
         $this->maxFields=$request->input('i');
+        $this->name=$request->input('name');
+        $this->month=$request->input('month_0');
 
-        for($i=0;$i<$this->maxFields;$i++)
+        for($i=0;$i<(int)$this->maxFields+1;$i++)
         {
-            $this->products[$this->maxFields]["name"]=$this->name;
-            $this->products[$this->maxFields]["product"]=$request->input('product'+$this->maxFields);
-            $this->products[$this->maxFields]["price"]=$request->input('price')+$this->maxFields;
+            $this->products[$i]["name"]=$this->name;
+            $this->products[$i]["product"]=$request->input('product'.$i);
+            $this->products[$i]["month"]=$this->month;
+            $this->products[$i]["price"]=$request->input('price'.$i);
 
         }
 
         $i=0;
+        $this->sumPrice=0;
 
         foreach($this->products as $p)
         {
-            $this->sumPrice+=$this->products[$i]["price"];
+            $this->sumPrice+=(int)$this->products[$i]["price"];
 
             $i++;
 
@@ -63,10 +68,13 @@ class ApplicationController extends Controller
 
         if($request->has('confirm'))
         {
+            $this->month=$request->input('month_0');
+
             $receipts=Receipt::create([
 
                     "name"=>$this->name,
-                    "products"=>$this->product,
+                    "products"=>"",
+                    "month"=>$this->month,
                     "price"=>$this->sumPrice,
                     "user_id"=>$this->user_id
 
@@ -74,12 +82,12 @@ class ApplicationController extends Controller
 
         }
 
-        $res=1;
+        $res=0;
         $i=$this->maxFields+1;
+        $value=0;
 
-        //return view('AddReceipt',compact('res','i'));
+        return view('AddReceipt',compact('res','i','value'));
 
-        return var_dump($this->products);
     }
     public function saveReceipt()
     {
@@ -114,10 +122,11 @@ class ApplicationController extends Controller
         $res=1;
         $i=0;
 
-        $this->name=$request->input('name');
         $value=$request->input('value');
+        $name_0=$request->input('name');
+        $month_0=$request->input('month');
 
-        return view('AddReceipt',compact('res','i','value'));
+        return view('AddReceipt',compact('res','i','value','name_0','month_0'));
 
     }
 

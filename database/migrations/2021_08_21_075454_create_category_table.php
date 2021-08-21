@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReceiptTable extends Migration
+class CreateCategoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class CreateReceiptTable extends Migration
      */
     public function up()
     {
-        Schema::create('receipt', function (Blueprint $table) {
+        Schema::create('category', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('products');
-            $table->string('month');
-            $table->float('price');
-            $table->integer('user_id');
             $table->timestamps();
         });
     }
@@ -31,7 +27,7 @@ class CreateReceiptTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('receipt');
+        Schema::dropIfExists('category');
     }
-
+    
 }

@@ -12,6 +12,7 @@
 
         <label for="name">Podaj nazwę rachunku: </label>
         <input type="text" name="name">
+        <input type="text" name="month">
         <input type="number" name="value">
 
         <input type="submit" value="Send">
@@ -29,6 +30,8 @@
             <label for="price">Cena: </label>
             <input type="text" name="price{{$v}}">
             <input type="hidden" name="i" value="{{$v}}">
+            <input type="hidden" name="name" value="{{$name_0}}">
+            <input type="hidden" name="month_0" value={{$month_0}}>
 
         @endfor
 
