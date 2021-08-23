@@ -11,7 +11,15 @@
     <form name="a" method="get" action="getReceiptForm">
 
         <label for="name">Podaj nazwę rachunku: </label>
-        <input type="text" name="name">
+        <!-- input type="text" name="name"> --> 
+        <select name="name">
+            @foreach($categories as $c)
+                
+                <option value="{{$c->name}}">{{$c->name}}</option>
+
+            @endforeach
+
+        </select>
         <input type="text" name="month">
         <input type="number" name="value">
 

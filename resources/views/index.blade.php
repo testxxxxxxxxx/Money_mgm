@@ -7,6 +7,22 @@
     <title>Document</title>
 </head>
 <body>
-    
+
+    <form name="a" method="get" action="ShowResults">
+
+    <label for="month">Podaj nazwe miesiąca</label>
+    <select name="choose">
+        @foreach($receipt as $r)
+
+        <option value="{{$r->month}}">{{$r->month}}</option>
+
+        @endforeach
+
+    </select>
+
+    <input type="submit" name="confirm" value="Check">
+
+    </form>
+
 </body>
 </html>

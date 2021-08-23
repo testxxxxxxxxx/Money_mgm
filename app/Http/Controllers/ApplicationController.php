@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Receipt;
 use App\Models\Statistics;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
@@ -23,19 +24,75 @@ class ApplicationController extends Controller
         ]
 
     ];
+    /*protected array $categoriesTable=[
 
-    public function ShowResults()
+        [
+            "name"=>NULL,
+            "price"=>NULL,
+
+        ]
+
+    ];*/
+
+    public function ShowResults(Request $request)
     {
-        $receipt=Receipt::find(1);
+        $categoriesTable=[
 
-        return $receipt;
+            [
+                "name"=>NULL,
+                "price"=>NULL,
+    
+            ]
+    
+        ];
+
+        $this->month=$request->input('choose');
+
+        $receipt=Receipt::get();
+
+        if($request->has('confirm'))
+        {
+                $categories=Category::get();
+
+                $i=0;
+
+                foreach($categories as $c)
+                {
+
+                    $this->name=$c->name;
+
+                    $receipt=Receipt::where(["name"=>$this->name,"month"=>$this->month,"user_id"=>Auth::id()])->get();    
+
+                    $this->sumPrice=0;
+
+                    foreach($receipt as $r)
+                    {
+                        $this->sumPrice+=$r->price;
+
+                    }
+
+                    $sum=$this->sumPrice;
+
+                    $categoriesTable[$i]["name"]=$this->name;
+                    $categoriesTable[$i]["price"]=$this->sumPrice;
+
+                    $i++;
+
+                }
+
+                return $categoriesTable;
+        
+        }
+
+        return view('index',compact('receipt'));
 
     }
     public function AddReceiptForms()
     {
         $res=0;
+        $categories=Category::get();
 
-        return view('AddReceipt',compact('res'));
+        return view('AddReceipt',compact('res','categories'));
 
     }
     public function AddReceipt(Request $request)
@@ -43,6 +100,7 @@ class ApplicationController extends Controller
         $this->maxFields=$request->input('i');
         $this->name=$request->input('name');
         $this->month=$request->input('month_0');
+        $categories=Category::get();
 
         for($i=0;$i<(int)$this->maxFields+1;$i++)
         {
@@ -86,7 +144,7 @@ class ApplicationController extends Controller
         $i=$this->maxFields+1;
         $value=0;
 
-        return view('AddReceipt',compact('res','i','value'));
+        return view('AddReceipt',compact('res','i','value','categories'));
 
     }
     public function saveReceipt()
@@ -125,8 +183,9 @@ class ApplicationController extends Controller
         $value=$request->input('value');
         $name_0=$request->input('name');
         $month_0=$request->input('month');
+        $categories=Category::get();
 
-        return view('AddReceipt',compact('res','i','value','name_0','month_0'));
+        return view('AddReceipt',compact('res','i','value','name_0','month_0','categories'));
 
     }
 

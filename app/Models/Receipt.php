@@ -27,5 +27,10 @@ class Receipt extends Model
         return $this->belongsTo(Statistics::class);
 
     }
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+
+    }
 
 }
