@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
 {
-    protected $maxFields,$sumPrice,$name,$product,$user_id,$month;
+    protected $maxFields,$sumPrice,$name,$product,$user_id,$month,$id;
 
     protected array $products=[
 
@@ -186,6 +186,48 @@ class ApplicationController extends Controller
         $categories=Category::get();
 
         return view('AddReceipt',compact('res','i','value','name_0','month_0','categories'));
+
+    }
+    public function showReceipt(Request $request)
+    {
+        $res=0;
+        $receipt=Receipt::get();
+
+        return view('updateReceipt',compact('receipt','res'));
+
+    }
+    public function getUpdateReceiptForm(Request $request)
+    {
+        $res=1;
+        $receipt=Receipt::get();
+        $id=$request->input('id_r');
+
+        return view('updateReceipt',compact('receipt','res','id'));
+
+    }
+    public function UpdateReceipt(Request $request)
+    {
+        $this->id=$request->input('id');
+        $this->sumPrice=$request->input('price');
+
+        if($request->has('sub'))
+        {
+
+            $receipt=Receipt::where('id',$this->id)->update(["price"=>$this->sumPrice]);
+
+            return redirect()->route('showReceipt');
+
+        }
+        else return redirect()->route('showReceipt');
+
+    }
+    public function DeleteReceipt(Request $request)
+    {
+        $this->id=$request->input('id_r');
+
+        $receipt=Receipt::where('id',$this->id)->delete();
+
+        return redirect()->route('showReceipt');
 
     }
 

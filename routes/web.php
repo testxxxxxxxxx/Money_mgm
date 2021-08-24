@@ -24,4 +24,8 @@ Route::get('/home/ShowResults',[App\Http\Controllers\ApplicationController::clas
 Route::get('/home/AddReceiptForms',[App\Http\Controllers\ApplicationController::class,'AddReceiptForms'])->middleware('auth')->name('AddReceiptForms');
 Route::get('/home/getReceiptForm',[App\Http\Controllers\ApplicationController::class,'getReceiptForm'])->middleware('auth')->name('getReceiptForm');
 Route::get('/home/AddReceipt',[App\Http\Controllers\ApplicationController::class,'AddReceipt'])->middleware('auth')->name('AddReceipt');
+Route::get('/home/showReceipt',[App\Http\Controllers\ApplicationController::class,'showReceipt'])->middleware('auth')->name('showReceipt');
+Route::get('/home/getUpdateReceiptForm',[App\Http\Controllers\ApplicationController::class,'getUpdateReceiptForm'])->middleware('auth')->name('getUpdateReceiptForm');
+Route::get('/home/UpdateReceipt',[App\Http\Controllers\ApplicationController::class,'UpdateReceipt'])->middleware('auth')->name('UpdateReceipt');
+Route::get('/home/DeleteReceipt',[App\Http\Controllers\ApplicationController::class,'DeleteReceipt'])->middleware('auth')->name('DeleteReceipt');
 
