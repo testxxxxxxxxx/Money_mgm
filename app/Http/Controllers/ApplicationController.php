@@ -36,6 +36,8 @@ class ApplicationController extends Controller
 
     public function ShowResults(Request $request)
     {
+        $width="200px";
+
         $categoriesTable=[
 
             [
@@ -80,11 +82,11 @@ class ApplicationController extends Controller
 
                 }
 
-                return $categoriesTable;
+                return view('index',compact('receipt','categoriesTable','width'));
         
         }
 
-        return view('index',compact('receipt'));
+        return view('index',compact('receipt','categoriesTable','width'));
 
     }
     public function AddReceiptForms()
