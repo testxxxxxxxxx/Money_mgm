@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="<?php echo asset('style.css'); ?>">
+
     <title>Document</title>
 </head>
 <body>
@@ -38,8 +41,8 @@
 
         <?php
 
-            echo "<div>".$categoriesTable[$i]['name']."</div>" ."<br>";
-            echo "<div>".$categoriesTable[$i]["price"]."</div>"."<br>";
+            echo "<div id='name".$i."'>".$categoriesTable[$i]['name']."</div>" ."<br>";
+            echo "<div id='price".$i."'>".$categoriesTable[$i]["price"]."</div>"."<br>";
 
             $i++;
             
@@ -53,59 +56,23 @@
 
 </div>
 
+<script>
 
-</body>
-<script src="https://code.highcharts.com/highcharts.js"></script>
+    let name=document.getElementById('name0');
+    let price=document.getElementById('price0');
+    let name1=document.getElementById('name1');
+    let price1=document.getElementById('price1');
+    let name2=document.getElementById('name2');
+    let price2=document.getElementById('price2');
 
-<script type="text/javascript">
-    /*var userData = <?php echo json_encode($categoriesTable)?>;
-
-    Highcharts.chart('container', {
-        title: 
-            text: 'New User Growth, 2020'
-        ,
-        subtitle: 
-            text: 'Source: zentica-global.com'
-        ,
-        xAxis: 
-            categories: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
-                'October', 'November', 'December'
-            ]
-        ,
-        yAxis: 
-            title: 
-                text: 'Number of New Users'
-            
-        ,
-        legend: 
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle'
-        ,
-        plotOptions: 
-            series: 
-                allowPointSelect: true
-            
-        ,
-        series: [
-            name: 'New Users',
-            data: userData
-        ],
-        responsive: 
-            rules: [
-                condition: 
-                    maxWidth: 500
-                ,
-                chartOptions: 
-                    legend: 
-                        layout: 'horizontal',
-                        align: 'center',
-                        verticalAlign: 'bottom'
-                    
-                
-            ]
-        
-    });*/
+    name.style.width='{{$categoriesTable[0]["price"]}}'+'px';
+    price.style.width='{{$categoriesTable[0]["price"]}}'+'px';
+    name1.style.width='{{$categoriesTable[1]["price"]}}'+'px';
+    price1.style.width='{{$categoriesTable[1]["price"]}}'+'px';
+    name2.style.width='{{$categoriesTable[2]["price"]}}'+'px';
+    price2.style.width='{{$categoriesTable[2]["price"]}}'+'px';
 
 </script>
+
+</body>
 </html>

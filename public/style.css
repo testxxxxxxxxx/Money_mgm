@@ -1,0 +1,48 @@
+body{
+    background-color: blue;
+    margin: 0;
+    padding: 0;
+
+}
+div#name0{
+    background-color: red;
+    width: 0px;
+    height: 20px;
+    position: absolute;
+
+}
+div#price0{
+    background-color: chartreuse;
+    width: 0px;
+    height: 20px;
+    position: absolute;
+
+}
+div#name1{
+    background-color: red;
+    width: 0px;
+    height: 20px;
+    position: absolute;
+
+}
+div#price1{
+    background-color: chartreuse;
+    width: 0px;
+    height: 20px;
+    position: absolute;
+
+}
+div#name2{
+    background-color: red;
+    width: 0px;
+    height: 20px;
+    position: absolute;
+
+}
+div#price2{
+    background-color: chartreuse;
+    width: 0px;
+    height: 20px;
+    position: absolute;
+
+}
