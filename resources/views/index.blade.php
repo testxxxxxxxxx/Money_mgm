@@ -65,14 +65,19 @@
     let name2=document.getElementById('name2');
     let price2=document.getElementById('price2');
 
-    name.style.width='{{$categoriesTable[0]["price"]}}'+'px';
-    price.style.width='{{$categoriesTable[0]["price"]}}'+'px';
-    name1.style.width='{{$categoriesTable[1]["price"]}}'+'px';
-    price1.style.width='{{$categoriesTable[1]["price"]}}'+'px';
-    name2.style.width='{{$categoriesTable[2]["price"]}}'+'px';
-    price2.style.width='{{$categoriesTable[2]["price"]}}'+'px';
+    @isset($categoriesTable)
+
+        name.style.width='{{$categoriesTable[0]["price"]}}'+'px';
+        price.style.width='{{$categoriesTable[0]["price"]}}'+'px';
+        name1.style.width='{{$categoriesTable[1]["price"]}}'+'px';
+        price1.style.width='{{$categoriesTable[1]["price"]}}'+'px';
+        name2.style.width='{{$categoriesTable[2]["price"]}}'+'px';
+        price2.style.width='{{$categoriesTable[2]["price"]}}'+'px';
+
+    @endisset
 
 </script>
+
 
 </body>
 </html>

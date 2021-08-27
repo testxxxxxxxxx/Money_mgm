@@ -9,6 +9,7 @@ div#name0{
     width: 0px;
     height: 20px;
     position: absolute;
+    margin-top: 20px;
 
 }
 div#price0{
@@ -16,6 +17,7 @@ div#price0{
     width: 0px;
     height: 20px;
     position: absolute;
+    margin-top: 20px;
 
 }
 div#name1{
@@ -23,6 +25,7 @@ div#name1{
     width: 0px;
     height: 20px;
     position: absolute;
+    margin-top: 40px;
 
 }
 div#price1{
@@ -30,6 +33,7 @@ div#price1{
     width: 0px;
     height: 20px;
     position: absolute;
+    margin-top: 40px;
 
 }
 div#name2{
@@ -37,6 +41,7 @@ div#name2{
     width: 0px;
     height: 20px;
     position: absolute;
+    margin-top: 60px;
 
 }
 div#price2{
@@ -44,5 +49,6 @@ div#price2{
     width: 0px;
     height: 20px;
     position: absolute;
+    margin-top: 60px;
 
 }

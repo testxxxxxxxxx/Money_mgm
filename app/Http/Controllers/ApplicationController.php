@@ -24,36 +24,27 @@ class ApplicationController extends Controller
         ]
 
     ];
-    /*protected array $categoriesTable=[
-
-        [
-            "name"=>NULL,
-            "price"=>NULL,
-
-        ]
-
-    ];*/
 
     public function ShowResults(Request $request)
     {
         $width="200px";
 
-        $categoriesTable=[
-
-            [
-                "name"=>NULL,
-                "price"=>NULL,
-    
-            ]
-    
-        ];
-
         $this->month=$request->input('choose');
 
-        $receipt=Receipt::get();
+        $receipt=Receipt::distinct('month')->get('month');
 
         if($request->has('confirm'))
         {
+            $categoriesTable=[
+
+                [
+                    "name"=>NULL,
+                    "price"=>NULL,
+    
+                ]
+    
+            ];
+
                 $categories=Category::get();
 
                 $i=0;
@@ -86,7 +77,7 @@ class ApplicationController extends Controller
         
         }
 
-        return view('index',compact('receipt','categoriesTable','width'));
+        return view('index',compact('receipt','width'));
 
     }
     public function AddReceiptForms()
