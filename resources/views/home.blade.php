@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+<head>
+    <link rel="stylesheet" type="text/css" href="<?php echo asset('style.css')?>">
+
+</head>
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -16,6 +21,11 @@
 
                     {{ __('You are logged in!') }}
                 </div>
+
+                <a href="/home/ShowResults"> ShowResults</a>
+                <a href="/home/AddReceiptForms"> Add Receipt</a>
+                <a href="/home/getUpdateReceiptForm"> Update Receipt </a>
+
             </div>
         </div>
     </div>

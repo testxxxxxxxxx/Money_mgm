@@ -25,6 +25,11 @@ class ApplicationController extends Controller
 
     ];
 
+    public function index()
+    {
+
+        return view('start');
+    }
     public function ShowResults(Request $request)
     {
         $width="200px";
@@ -140,7 +145,7 @@ class ApplicationController extends Controller
         return view('AddReceipt',compact('res','i','value','categories'));
 
     }
-    public function saveReceipt()
+    /*public function saveReceipt()
     {
         $this->user_id=Auth::id();
 
@@ -167,7 +172,7 @@ class ApplicationController extends Controller
 
         }
 
-    }
+    }*/
     public function getReceiptForm(Request $request)
     {
         $res=1;

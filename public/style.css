@@ -1,5 +1,5 @@
 body{
-    background-color: blue;
+    background-color: gray;
     margin: 0;
     padding: 0;
 
@@ -51,4 +51,25 @@ div#price2{
     position: absolute;
     margin-top: 60px;
 
+}
+ul{
+    list-style: none;
+
+}
+a{
+    text-decoration: none;
+    color: white;
+    font-size: 25px;
+
+}
+a:hover {
+
+    text-decoration: underline;
+    font-size: 30px;
+
+}
+input {
+
+    border: solid 3px black;
+    border-radius: 10px;
 }
