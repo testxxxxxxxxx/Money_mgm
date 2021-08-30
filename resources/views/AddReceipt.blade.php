@@ -6,9 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="<?php echo asset('style.css')?>">
     
-    <title>Document</title>
+    <title>Application</title>
 </head>
 <body>
+
+<div class="container">
+
+<div class="form-group row">
+
+<div class="col-md-6">
+
+    <a href="/home">Powrót</a>
 
     <form name="a" method="get" action="getReceiptForm">
 
@@ -22,7 +30,9 @@
             @endforeach
 
         </select>
+        <label for="month">Miesiąc: </label>
         <input type="text" name="month">
+        <label for="value"> Podaj ilość produtów chyba że kategoria jest inna niż zakupy to wtedy wpisać 1</label>
         <input type="number" name="value">
 
         <input type="submit" value="Send">
@@ -50,6 +60,12 @@
         </form>
 
     @endif
+
+</div>
+
+</div>
+
+</div>
 
 </body>
 </html>

@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" type="text/css" href="<?php echo asset('style.css'); ?>">
 
-    <title>Document</title>
+    <title>Application</title>
 </head>
 <body>
 
@@ -15,7 +15,9 @@
 
 <div class="col-sm-6">
 
-<div class="form-group">
+<div class="form-group row">
+
+    <a href="/home">Powrót</a>
 
     <form name="a" method="get" action="ShowResults">
 

@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+<head>
+    <link rel="stylesheet" type="text/css" href="<?php echo asset('style.css')?>">
+    
+</head>
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
